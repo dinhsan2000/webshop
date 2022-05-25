@@ -66,13 +66,13 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
             <div class="form-group row">
                 <label class="col-form-label col-md-3 col-sm-3 ">Tên danh mục</label>
                 <div class="col-md-9 col-sm-9 ">
-                    <input type="text" class="form-control" name="cat_name" id="cat_name" placeholder="Tên danh mục">
+                    <input type="text" class="form-control" name="cat_name" id="cat_name" value="<?php echo $cat_name ?>" placeholder="Tên danh mục">
                 </div>
             </div>
             <label class="col-md-3 col-sm-3  control-label">Trạng thái sản phẩm</label>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value="1" name="status" id="status"> Ẩn/Hiện
+                        <input type="checkbox" value="1" <?php echo ($status)?"checked":"" ?> name="status"  id="status"> Ẩn/Hiện
                     </label>
                 </div>
             <div class="ln_solid"></div>
