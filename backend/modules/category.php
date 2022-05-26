@@ -32,8 +32,8 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
             // Viết câu lệnh update bài viết theo id nếu không thoả mãn điều kiện id=bài viết và edit trên url
             if (isset($_GET["id"]) && isset($_GET["edit"])) {
                 $sqlUpdate = "UPDATE `category` SET cat_name='$cat_name', status='$status', date_create='$date_create' WHERE cat_id=".$_GET["id"];
-                echo ($sqlUpdate);
-                mysqli_query($conn, $sqlUpdate);// or die("Lỗi cập nhật");
+                // echo ($sqlUpdate);
+                mysqli_query($conn, $sqlUpdate) or die("Lỗi cập nhật");
             } else {
 
                 // hoặc thêm mới bài viết nếu không chứa url page=category&id=1&edit=1
