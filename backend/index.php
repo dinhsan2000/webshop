@@ -1,7 +1,12 @@
 <?php
 ob_start();
+session_start();
+if(!$_SESSION["login"]) {
+    header("location:login.php");
+}
 require_once ('../connection.php');
 require_once ('../common.php');
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 ?>
 <!DOCTYPE html>
 <html lang="en">

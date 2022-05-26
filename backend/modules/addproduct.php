@@ -25,11 +25,37 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
             </div>
             <?php
             if(isset($_POST["addNew"])) {
-//                 echo "<pre>";
-//                 print_r($_POST);
                 $table = "products";
                 $_POST["status"] = 1;
                 $_POST["date_create"] = date("Y-m-d H:i:s");
+
+                // đường dẫn file
+                $path = uploads;
+                $Filename = "";
+                if(isset($_FILES["image"])) {
+                    if(isset($_FILES["image"]["name"])) { // xử lí file nếu tồn tại thì tiến hành upload ảnh
+                        // kiểm tra định dạng  xem có phải ảnh hay không, tránh up file có virus
+                        if($_FILES["image"]["type"]=="image/jpeg" || $_FILES["image"]["type"]=="image/png" || $_FILES["image"]["type"]=="image/gift") {
+                            // kiểm tra dung lượng file upload lên
+                            if($_FILES["image"]["size"] <= 240000000) {
+                                if($_FILES["image"]["error"] == 0) { // nếu lỗi = 0 thì mới upload được
+                                    // di chuyển file vào thư mục upload
+                                    move_uploaded_file($_FILES["image"]["tmp_name"],"../".$path."/".$_FILES["image"]["name"]);
+                                    $Filename = $path."/".$_FILES["image"]["name"];
+                                }else {
+                                    echo "Lỗi file";
+                                }
+                            }else {
+                                echo "File quá lớn";
+                            }
+                        }else {
+                            echo "File không phải là ảnh";
+                        }
+                    }else {
+                        echo "Bạn chưa chọn file";
+                    }
+                }
+                $_POST["image"] = $Filename;
                 $data = $_POST;
                 addNew($table, $data);
             }
@@ -92,7 +118,7 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
                     </div>
 
                     <div class="col-md-6 col-sm-6  form-group has-feedback">
-                        <input type="file" class="form-control" id="images" name="images">
+                        <input type="file" id="image" name="image">
                     </div>
 
                     <div class="col-md-6 col-sm-6  form-group has-feedback">
