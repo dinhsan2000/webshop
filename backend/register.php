@@ -47,10 +47,10 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
                             $email = mysqli_real_escape_string($conn, $_POST["email"]);;
                             $mobile = mysqli_real_escape_string($conn, $_POST["mobile"]);
                             $password = mysqli_real_escape_string($conn, $_POST["password"]);
-                            $password = trim(md5($password));
+                            $password = md5($password);
                             $gender = isset($_POST['gender']) ? 1 : 0;
                             $date_create = date('y-m-d H:i:s');
-                            $password = password_hash($password, PASSWORD_DEFAULT);
+                            // $password = password_hash($password, PASSWORD_DEFAULT);
                             $sqlCheck = "SELECT * FROM user WHERE user_name = '$user_name' OR email = '$email'";
                             $resultCheck = mysqli_query($conn, $sqlCheck);
                             if (mysqli_num_rows($resultCheck) > 0) {
@@ -62,9 +62,8 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
                             } else {
                                 $sqlInsertReg = "INSERT INTO user (user_name, email, password, mobile, gender, date_create) 
                                 VALUES ('$user_name', '$email', '$password', '$mobile', '$gender', '$date_create')";
-                                echo($sqlInsertReg);
                                 if (mysqli_query($conn, $sqlInsertReg)) {
-                                    echo '<script language="javascript">alert("Đăng ký thành công"); window.location="register.php";</script>';
+                                    echo '<script language="javascript">alert("Đăng ký thành công"); window.location="login.php";</script>';
                                 } else {
                                     echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý"); window.location="register.php";</script>';
                                 }

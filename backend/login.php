@@ -46,15 +46,15 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
                         $user_name = trim($_POST["user_name"]);
                         $password = mysqli_real_escape_string($conn, $_POST["password"]);
                         $password = md5($password);
-                        $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' and password = '$password' ";
+                        $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' and password = '$password' AND status = 1 ";
                         $result = mysqli_query($conn, $sqlLogin);
                         if (mysqli_num_rows($result)) {
                             // tạo session nếu login thành công
                             $rowlogin = mysqli_fetch_row($result);
-                            $_SESSION["login"] = $result;
+                            $_SESSION["login"] = $rowlogin;
                             header("location:index.php");
                         } else {
-                            header("location:login.php");
+                            header("location:../index.php");
                             echo ("Lỗi");
                         }
                     }
