@@ -33,7 +33,7 @@
                     <li><a href="index.php?page=category">Quản lí danh mục</a></li>
                     <li><a href="index.php?page=addproduct">Thêm mới sản phẩm</a></li>
                     <li><a href="index.php?page=addfactory">Thêm mới nhà sản xuất và kích cỡ</a></li>
-                    <li><a href="form_wizards.html">Form Wizard</a></li>
+                    <li><a href="index.php?page=accounts">Quản lí tài khoản</a></li>
                     <li><a href="form_upload.html">Form Upload</a></li>
                     <li><a href="form_buttons.html">Form Buttons</a></li>
                 </ul>
