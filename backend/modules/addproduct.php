@@ -57,6 +57,7 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
                 }
                 $_POST["image"] = $Filename;
                 $data = $_POST;
+                die();
                 addNew($table, $data);
             }
             ?>
@@ -119,6 +120,9 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 
                     <div class="col-md-6 col-sm-6  form-group has-feedback">
                         <input type="file" id="image" name="image">
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback" >
+                        <input type="file" id="images" name="images[]" multiple="multiple">
                     </div>
 
                     <div class="col-md-6 col-sm-6  form-group has-feedback">
