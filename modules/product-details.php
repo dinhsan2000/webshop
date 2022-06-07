@@ -41,11 +41,19 @@
 
                     <div class="single-zoom-thumb">
                         <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                            <?php
+                            $sqlImage = "SELECT * FROM images WHERE pro_id = $id";
+                            $resultImg = mysqli_query($conn, $sqlImage);
+                            //$rowImg = (mysqli_fetch_row($resultImg));
+                            foreach ($resultImg as $rowImg) {
+                            //echo "<pre>";
+                           // print_r($rowImg);
+                            ?>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?php echo $row[5] ?>" data-zoom-image="<?php echo $row[5] ?>">
-                                    <img src="<?php echo $row[5] ?>" alt="zo-th-1"/>
+                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?php echo "/webshop/uploads/".$rowImg["image"] ?>" data-zoom-image="<?php echo "/webshop/uploads/".$rowImg["image"] ?>">
+                                    <img src="<?php echo "/webshop/uploads/".$rowImg["image"] ?>" alt="zo-th-1"/>
                                 </a>
-
+                                <?php } ?>
                             </li>
                         </ul>
                     </div>

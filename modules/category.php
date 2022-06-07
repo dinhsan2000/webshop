@@ -10,6 +10,14 @@
                         <li>shop</li>
                     </ul>
                 </div>
+				                        <?php
+                        if (isset($_GET["id"])) {
+                            $cat_id = $_GET["id"];
+                            $sqlCat = "SELECT * FROM category WHERE cat_id=$cat_id";
+                            $resultCat = mysqli_query($conn, $sqlCat);
+                            $rowCat = mysqli_fetch_row($resultCat);
+                        }
+                        ?>
             </div>
         </div>
     </div>
@@ -140,10 +148,10 @@
                         <div class="col-lg-4 col-md-4 col-12 ">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="<?php echo $rowProHome["image"] ?>" alt="<?php echo $rowProHome['pro_name'] ?>" alt=""></a>
+                                    <a class="primary_img" href="index.php?page=product-details&id=<?php echo $rowProHome["pro_id"] ?>"><img src="<?php echo $rowProHome["image"] ?>" alt="<?php echo $rowProHome['pro_name'] ?>" alt=""></a>
 <!--                                    <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product16.jpg" alt=""></a>-->
                                     <div class="quick_button">
-                                        <a href="product-details.html"title="quick_view">Xem sản phẩm</a>
+                                        <a href="index.php?page=product-details&id=<?php echo $rowProHome["pro_id"] ?>"title="quick_view">Xem sản phẩm</a>
                                     </div>
 
                                     <div class="double_base">

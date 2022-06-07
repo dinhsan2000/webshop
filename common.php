@@ -21,7 +21,7 @@ function addNew ($table, $data) {
     }
     $sqlInsert = "INSERT INTO $table ($field)";
     $sqlInsert .= " VALUES ($val)";
-    // echo ($sqlInsert);
+    //echo ($sqlInsert);
     mysqli_query($conn, $sqlInsert) or die('Lỗi truy vấn DB');
 }
 ?>
