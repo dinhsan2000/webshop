@@ -22,7 +22,13 @@
                 <li class="top_links"><a href="#">Tài Khoản của tôi <i class="ion-chevron-down"></i></a>
                     <ul class="dropdown_links">
                         <li><a href="my-account.html">Tài khoản</a></li>
-                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="index.php?page=login"
+                                <?php
+                                if(isset($_SESSION["login"])) {
+                                    echo $_SESSION["login"][1];
+                                }
+                                ?></a></li>
+                        <li><a href="index.php?page=logout">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -135,7 +141,14 @@
                             <li class="top_links"><a href="#">Tài khoản của tôi<i class="ion-chevron-down"></i></a>
                                 <ul class="dropdown_links">
                                     <li><a href="my-account.html">Tài khoản của tôi</a></li>
-                                    <li><a href="#">Đăng nhập</a></li>
+                                    <li><a href="index.php?page=login">Đăng Nhập
+                                            <?php
+                                            if(isset($_SESSION["login"])) {
+                                                echo $_SESSION["login"][1];
+                                            }
+                                            ?>
+                                        </a></li>
+                                    <li><a href="index.php?page=logout">Đăng Xuất</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -1,6 +1,13 @@
+<?php
+include ("../connection.php");
+session_start();
+if(isset($_SESSION["login"])) {
+    header("location:index.php");
+}
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <title>Đăng nhập quản trị | Website quản trị v2.0</title>
     <meta charset="UTF-8">
@@ -21,6 +28,22 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 
+<?php
+if (isset($_POST["login"])) {
+    $user_name = trim($_POST["user_name"]);
+    $password = mysqli_real_escape_string($conn, $_POST["password"]);
+    $password = md5($password);
+    $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' and password = '$password'";
+    $result = mysqli_query($conn, $sqlLogin);
+    if (mysqli_num_rows($result)) {
+        // tạo session nếu login thành công
+        $rowlogin = mysqli_fetch_row($result);
+        $_SESSION["login"] = $rowlogin;
+        header("Location:index.php");
+    }
+}
+?>
+
 <body>
     <div class="limiter">
         <div class="container-login100">
@@ -29,15 +52,15 @@
                     <img src="assets/images/team.jpg" alt="IMG">
                 </div>
                 <!--=====TIÊU ĐỀ======-->
-                <form class="login100-form validate-form">
+                <form method="post" class="login100-form validate-form">
                     <span class="login100-form-title">
                         <b>ĐĂNG NHẬP HỆ THỐNG POS</b>
                     </span>
                     <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======-->
-                    <form action="">
+                    <form method="post">
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" placeholder="Tài khoản quản trị" name="username"
-                                id="username">
+                            <input class="input100" type="text" placeholder="Tài khoản" name="user_name"
+                                id="user_name">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class='bx bx-user'></i>
@@ -45,8 +68,8 @@
                         </div>
                         <div class="wrap-input100 validate-input">
                             <input autocomplete="off" class="input100" type="password" placeholder="Mật khẩu"
-                                name="current-password" id="password-field">
-                            <span toggle="#password-field" class="bx fa-fw bx-hide field-icon click-eye"></span>
+                                name="password" id="password">
+<!--                            <span toggle="#password-field" class="bx fa-fw bx-hide field-icon click-eye"></span>-->
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class='bx bx-key'></i>
@@ -55,7 +78,7 @@
 
                         <!--=====ĐĂNG NHẬP======-->
                         <div class="container-login100-form-btn">
-                            <input type="button" value="Đăng nhập" id="submit" onclick="validate()" />
+                            <button type="submit" class="btn btn-success" name="login" id="login">Submit</button>
                         </div>
                         <!--=====LINK TÌM MẬT KHẨU======-->
                         <div class="text-right p-t-12">
@@ -67,15 +90,14 @@
                     <!--=====FOOTER======-->
                     <div class="text-center p-t-70 txt2">
                         Phần mềm quản lý bán hàng <i class="far fa-copyright" aria-hidden="true"></i>
-                        <script type="text/javascript">document.write(new Date().getFullYear());</script> <a
-                            class="txt2" href="https://www.facebook.com/truongvo.vd1503/"> Code bởi Trường </a>
+                        <a class="txt2" href="#"> <?php echo date("Y")?> </a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <!--Javascript-->
-    <script src="/js/main.js"></script>
+<!--    <script src="/js/main.js"></script>-->
     <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="assets/vendor/bootstrap/js/popper.js"></script>

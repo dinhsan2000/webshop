@@ -7,7 +7,7 @@
 
 
         <!-- User Menu-->
-        <li><a class="app-nav__item" href="/login.php"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+        <li><a class="app-nav__item" href="index.php?page=logout"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
         </li>
     </ul>

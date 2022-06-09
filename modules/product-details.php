@@ -50,7 +50,7 @@
                            // print_r($rowImg);
                             ?>
                             <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="<?php echo "/webshop/uploads/".$rowImg["image"] ?>" data-zoom-image="<?php echo "/webshop/uploads/".$rowImg["image"] ?>">
+                                <a href="#" class="elevatezoom-gallery active" data-update="<?php echo "/webshop/uploads/".$rowImg["image"] ?>" data-image="<?php echo "/webshop/uploads/".$rowImg["image"] ?>" data-zoom-image="<?php echo "/webshop/uploads/".$rowImg["image"] ?>">
                                     <img src="<?php echo "/webshop/uploads/".$rowImg["image"] ?>" alt="zo-th-1"/>
                                 </a>
                                 <?php } ?>

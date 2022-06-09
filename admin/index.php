@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 include ('../connection.php');
 include ('../common.php');
 date_default_timezone_set("Asia/Ho_Chi_Minh");
+session_start();
+ob_start();
+if(!$_SESSION["login"]) {
+    header("location:login.php");
+    echo(!$_SESSION);
+}
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <title>Danh sách nhân viên | Quản trị Admin</title>
   <meta charset="utf-8">

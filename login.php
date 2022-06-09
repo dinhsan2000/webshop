@@ -1,6 +1,10 @@
+<?php
+require_once ("connection.php");
+session_start();
+ob_start();
+?>
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -9,11 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    
-    <!-- CSS 
+
     ========================= -->
-
-
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="assets/css/plugins.css">
     
@@ -314,8 +315,24 @@
         </div>         
     </div>
     <!--breadcrumbs area end-->
-    
+
     <!-- customer login start -->
+    <form method="post">
+        <?php
+        if (isset($_POST["login"])) {
+            $user_name = trim($_POST["user_name"]);
+            $password = mysqli_real_escape_string($conn, $_POST["password"]);
+            $password = md5($password);
+            $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' and password = '$password'";
+            $result = mysqli_query($conn, $sqlLogin);
+            if (mysqli_num_rows($result)) {
+                // tạo session nếu login thành công
+                $rowlogin = mysqli_fetch_row($result);
+                $_SESSION["login"] = $rowlogin;
+                header("Location:index.php");
+            }
+        }
+        ?>
     <div class="customer_login">
         <div class="container">
             <div class="row">
@@ -324,52 +341,101 @@
                     <div class="account_form">
                         <h2>login</h2>
                         <form action="#">
-                            <p>   
+                            <p>
                                 <label>Username or email <span>*</span></label>
-                                <input type="text">
+                                <input type="text" name="user_name" id="user_name">
                              </p>
-                             <p>   
+                             <p>
                                 <label>Passwords <span>*</span></label>
-                                <input type="password">
-                             </p>   
+                                <input type="password" name="password" id="password">
+                             </p>
                             <div class="login_submit">
                                <a href="#">Lost your password?</a>
                                 <label for="remember">
                                     <input id="remember" type="checkbox">
                                     Remember me
                                 </label>
-                                <button type="submit">login</button>
-                                
+                                <button type="submit" name="login" id="login">login</button>
+
                             </div>
 
                         </form>
-                     </div>    
+                     </div>
                 </div>
                 <!--login area start-->
+                <?php
+                // Khởi tạo form đăng kí
+                if(isset($_POST['register'])) {
+                    // Check xem có trường nào chưa có thông tin không
+                    if (isset($_POST['user_name']) || !empty($_POST['email']) || !empty($_POST['password'])
+                        || !empty($_POST['mobile']) || !empty($_POST['gender'])) {
 
+                        // mysqli_escape để lọc dữ liệu tránh bị hack và lỗi sql injector
+                        $user_name = mysqli_real_escape_string($conn, $_POST["user_name"]);
+                        $email = mysqli_real_escape_string($conn, $_POST["email"]);;
+                        $mobile = mysqli_real_escape_string($conn, $_POST["mobile"]);
+                        $password = mysqli_real_escape_string($conn, $_POST["password"]);
+                        $password = md5($password);
+                        $gender = isset($_POST['gender']) ? 1 : 0;
+                        $date_create = date('y-m-d H:i:s');
+                        // $password = password_hash($password, PASSWORD_DEFAULT);
+                        $sqlCheck = "SELECT * FROM user WHERE user_name = '$user_name' OR email = '$email'";
+                        $resultCheck = mysqli_query($conn, $sqlCheck);
+                        if (mysqli_num_rows($resultCheck) > 0) {
+                            // Sử dụng javascript để thông báo
+                            echo '<script language="javascript">alert("Thông tin đăng nhập bị sai"); window.location="register.php";</script>';
+
+                            // Dừng chương trình
+                            die ();
+                        } else {
+                            $sqlInsertReg = "INSERT INTO user (user_name, email, password, mobile, gender, date_create) 
+                                VALUES ('$user_name', '$email', '$password', '$mobile', '$gender', '$date_create')";
+                            if (mysqli_query($conn, $sqlInsertReg)) {
+                                echo '<script language="javascript">alert("Đăng ký thành công"); window.location="login.php";</script>';
+                            } else {
+                                echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý"); window.location="register.php";</script>';
+                            }
+                        }
+                    }
+                }
+                ?>
                 <!--register area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form register">
                         <h2>Register</h2>
-                        <form action="#">
-                            <p>   
+                        <form method="post">
+                            <p>
                                 <label>Email address  <span>*</span></label>
-                                <input type="text">
+                                <input type="text" name="user_name" id="user_name">
                              </p>
-                             <p>   
+                             <p>
+                            <p>
+                                <label>Email address  <span>*</span></label>
+                                <input type="text" name="email" id="email">
+                            </p>
+                            <p>
                                 <label>Passwords <span>*</span></label>
-                                <input type="password">
+                                <input type="text" name="mobile" id="mobile">
+                            </p>
+                            <p>
+                                <label>Passwords <span>*</span></label>
+                                <input type="password" name="password" id="password">
                              </p>
+                            <p>
+                                <label>Passwords <span>*</span></label>
+                                <input type="password" name="repassword" id="repassword">
+                            </p>
                             <div class="login_submit">
                                 <button type="submit">Register</button>
                             </div>
                         </form>
-                    </div>    
+                    </div>
                 </div>
                 <!--register area end-->
             </div>
-        </div>    
+        </div>
     </div>
+    </form>
     <!-- customer login end -->
     
  <!--footer area start-->

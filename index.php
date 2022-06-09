@@ -42,8 +42,10 @@ if(isset($_GET['page'])) {
     include ('modules/products.php');
     include ('modules/bannerft.php');
     include ('modules/productft.php');
-    include ('modules/footer.php');
 }
+?>
+<?php
+require_once ('modules/footer.php');
 ?>
     <!-- Plugins JS -->
     <script src="assets/js/plugins.js"></script>
