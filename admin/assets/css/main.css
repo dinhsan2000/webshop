@@ -2622,17 +2622,24 @@ border: none !important;
   border-radius: .357rem;
 }
 
-
-
-
-
-
-
 .btn-success {
-  color: #FFF;
-  background-color: #28a745;
-  border-color: #28a745;
+  font-size: 17px;
+  background: #FFD43BFF;
+  border: 1px solid #FFD43BFF;
+  color: #000000FF;
+  font-weight: var(--w_500);
+  cursor: var(--cursor_pointer);
+  width: var(--onehundred_percent);
+  border-radius: var(--radius_5px);
+  padding: 10px 0;
+  outline: var(--none);
+  font-family: var(--font_family);
 }
+/*.btn-success {*/
+/*  color: #FFF;*/
+/*  background-color: #28a745;*/
+/*  border-color: #28a745;*/
+/*}*/
 
 .btn-success:hover {
   color: #FFF;

@@ -9,7 +9,7 @@ ob_start();
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Đăng nhập quản trị | Website quản trị v2.0</title>
+    <title>Đăng nhập quản trị</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
@@ -54,7 +54,7 @@ if (isset($_POST["login"])) {
                 <!--=====TIÊU ĐỀ======-->
                 <form method="post" class="login100-form validate-form">
                     <span class="login100-form-title">
-                        <b>ĐĂNG NHẬP HỆ THỐNG POS</b>
+                        <b>ĐĂNG NHẬP HỆ THỐNG</b>
                     </span>
                     <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======-->
                     <form method="post">
@@ -89,8 +89,9 @@ if (isset($_POST["login"])) {
                     </form>
                     <!--=====FOOTER======-->
                     <div class="text-center p-t-70 txt2">
-                        Phần mềm quản lý bán hàng <i class="far fa-copyright" aria-hidden="true"></i>
+                        Coppyright <i class="far fa-copyright" aria-hidden="true"></i>
                         <a class="txt2" href="#"> <?php echo date("Y")?> </a>
+                        By Đinh Trọng San
                     </div>
                 </form>
             </div>

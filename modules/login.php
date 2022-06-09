@@ -80,7 +80,7 @@
                         $password = md5($password);
                         $gender = isset($_POST['gender']) ? 1 : 0;
                         $date_create = date('y-m-d H:i:s');
-                        // $password = password_hash($password, PASSWORD_DEFAULT);
+                        $status = 1;
                         $sqlCheck = "SELECT * FROM user WHERE user_name = '$user_name' OR email = '$email'";
                         $resultCheck = mysqli_query($conn, $sqlCheck);
                         if (mysqli_num_rows($resultCheck) > 0) {
@@ -90,8 +90,8 @@
                             // Dừng chương trình
                             die ();
                         } else {
-                            $sqlInsertReg = "INSERT INTO user (user_name, email, password, mobile, gender, date_create) 
-                                VALUES ('$user_name', '$email', '$password', '$mobile', '$gender', '$date_create')";
+                            $sqlInsertReg = "INSERT INTO user (user_name, email, password, mobile, status, gender, date_create) 
+                                VALUES ('$user_name', '$email', '$password', '$mobile', '$status', '$gender', '$date_create')";
                             echo ($sqlInsertReg);
                             if (mysqli_query($conn, $sqlInsertReg)) {
                                 echo '<script language="javascript">alert("Đăng ký thành công"); window.location="index.php?page=login";</script>';

@@ -1,8 +1,8 @@
 <div class="text-center" style="font-size: 13px">
-    <p><b>Copyright
+    <p><b>Copyright &copy
             <script type="text/javascript">
                 document.write(new Date().getFullYear());
-            </script> Phần mềm quản lý bán hàng | Dev By Trường
+            </script> By Đinh Trọng San
         </b></p>
 </div>
 </main>
