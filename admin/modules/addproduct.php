@@ -15,11 +15,8 @@
                             <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
                                         class="fas fa-folder-plus"></i> Thêm danh mục</a>
                         </div>
-                        <div class="col-sm-2">
-                            <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i
-                                        class="fas fa-folder-plus"></i> Thêm tình trạng</a>
-                        </div>
                     </div>
+                </div>
                     <?php
             if(isset($_POST["addNew"])) {
                 $table = "products";
@@ -52,18 +49,32 @@
                         echo "Bạn chưa chọn file";
                     }
                 }
-
+                // upload nhiều file lên DB
                 if(isset($_FILES['images'])) {
                     $files = $_FILES['images'];
                     $file_names = $files['name'];
-                   // var_dump($files['tmp_name']);
-
-                    foreach ($file_names as $key => $value) {
-                        move_uploaded_file($_FILES['images']['tmp_name'][$key], '../uploads/'.$value);
-                    }
+                    if (isset($_FILES["image"]["name"])) { // xử lí file nếu tồn tại thì tiến hành upload ảnh
+                        // kiểm tra định dạng  xem có phải ảnh hay không, tránh up file có virus
+                        if ($_FILES["image"]["type"] == "image/jpeg" || $_FILES["image"]["type"] == "image/png" || $_FILES["image"]["type"] == "image/gift") {
+                            // kiểm tra dung lượng file upload lên
+                            if ($_FILES["image"]["size"] <= 240000000) {
+                                if ($_FILES["image"]["error"] == 0) { // nếu lỗi = 0 thì mới upload được
+                                    foreach ($file_names as $key => $value) {
+                                        move_uploaded_file($_FILES['images']['tmp_name'][$key], '../uploads/' . $value);
+                                    }
+                                }else {
+                                    echo "Lỗi file";
+                                }
+                            } else {
+                                echo "File quá lớn";
+                            }
+                        } else {
+                            echo "File không phải là ảnh";
+                        }
+                    } else {}
+                    echo "Bạn chưa chọn file";
                 }
                 $_POST["image"] = $Filename;
-                //var_dump($Filename);
                 $data = $_POST;
                 addNew($table, $data);
                 $pro_id = mysqli_insert_id($conn);
@@ -167,6 +178,7 @@
 <!--
 MODAL CHỨC VỤ
 -->
+     <form method="post">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -179,13 +191,22 @@ MODAL CHỨC VỤ
                 <h5>Thêm mới nhà cung cấp</h5>
               </span>
                     </div>
+                        <?php
+                        if(isset($_POST['addFac'])) {
+                            $fac_name = $_POST['fac_name'];
+                            $status = 1;
+                            $date_create = date('y-m-d H:i:s');
+                            $sqlInsertFac = "INSERT INTO `factory` (fac_name, status, date_create) VALUE ('$fac_name', '$status', '$date_create')";
+                            mysqli_query($conn, $sqlInsertFac);
+                        }
+                        ?>
                     <div class="form-group col-md-12">
-                        <label class="control-label">Nhập tên chức vụ mới</label>
-                        <input class="form-control" type="text" required>
+                        <label class="control-label">Nhập tên nhà cung cấp mới</label>
+                        <input class="form-control" name="fac_name" id="fac_name" type="text" required>
                     </div>
                 </div>
                 <BR>
-                <button class="btn btn-save" type="button">Lưu lại</button>
+                <button class="btn btn-save" type="submit" name="addFac" id="addFac">Lưu lại</button>
                 <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
                 <BR>
             </div>
@@ -194,6 +215,7 @@ MODAL CHỨC VỤ
         </div>
     </div>
 </div>
+     </form>
 <!--
 MODAL
 -->
@@ -203,11 +225,20 @@ MODAL
 <!--
 MODAL DANH MỤC
 -->
+     <form method="post">
 <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-
+            <?php
+            if(isset($_POST['addCat'])) {
+                $cat_name = $_POST['cat_name'];
+                $status = 1;
+                $date_create = date('y-m-d H:i:s');
+                $sqlInsertFac = "INSERT INTO `category` (cat_name, status, date_create) VALUE ('$cat_name', '$status', '$date_create')";
+                mysqli_query($conn, $sqlInsertFac);
+            }
+            ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group  col-md-12">
@@ -217,25 +248,11 @@ MODAL DANH MỤC
                     </div>
                     <div class="form-group col-md-12">
                         <label class="control-label">Nhập tên danh mục mới</label>
-                        <input class="form-control" type="text" required>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-                        <ul style="padding-left: 20px;">
-                            <li>Bàn ăn</li>
-                            <li>Bàn thông minh</li>
-                            <li>Tủ</li>
-                            <li>Ghế gỗ</li>
-                            <li>Ghế sắt</li>
-                            <li>Giường người lớn</li>
-                            <li>Giường trẻ em</li>
-                            <li>Bàn trang điểm</li>
-                            <li>Giá đỡ</li>
-                        </ul>
+                        <input class="form-control" name="cat_name" id="cat_name" type="text" required>
                     </div>
                 </div>
                 <BR>
-                <button class="btn btn-save" type="button">Lưu lại</button>
+                <button class="btn btn-save" type="submit" name="addCat" id="addCat">Lưu lại</button>
                 <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
                 <BR>
             </div>
@@ -244,44 +261,7 @@ MODAL DANH MỤC
         </div>
     </div>
 </div>
-<!--
-MODAL
--->
-
-
-
-
-<!--
-MODAL TÌNH TRẠNG
--->
-<div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <div class="row">
-                    <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
-                <h5>Thêm mới tình trạng</h5>
-              </span>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label class="control-label">Nhập tình trạng mới</label>
-                        <input class="form-control" type="text" required>
-                    </div>
-                </div>
-                <BR>
-                <button class="btn btn-save" type="button">Lưu lại</button>
-                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                <BR>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
+     </form>
 <!--
 MODAL
 -->

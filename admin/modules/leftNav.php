@@ -48,7 +48,7 @@
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="table-data-oder.html">
+            <a class="app-menu__item" href="index.php?page=order">
                 <i class='app-menu__icon bx bx-task'></i>
                 <span class="app-menu__label">Quản lý đơn hàng</span>
             </a>

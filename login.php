@@ -14,7 +14,7 @@ ob_start();
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-    ========================= -->
+    <!-- ========================= -->
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="assets/css/plugins.css">
     
@@ -411,7 +411,7 @@ ob_start();
                              <p>
                             <p>
                                 <label>Email address  <span>*</span></label>
-                                <input type="text" name="email" id="email">
+                                <input type="text" name="email" id="email" required onclick="CheckEmail(this);" onclick="CheckEmail(this);">
                             </p>
                             <p>
                                 <label>Passwords <span>*</span></label>

@@ -23,15 +23,18 @@
         $user_name = trim($_POST["user_name"]);
         $password = mysqli_real_escape_string($conn, $_POST["password"]);
         $password = md5($password);
-        $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' and password = '$password' AND status = 1";
+        $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' OR email = '$user_name' AND password = '$password' AND status = 1";
         $result = mysqli_query($conn, $sqlLogin);
         if (mysqli_num_rows($result)) {
             // tạo session nếu login thành công
             $rowlogin = mysqli_fetch_row($result);
             $_SESSION["login"] = $rowlogin;
             header("Location:index.php");
-        } else {
+            echo '<script language="javascript">alert("Đăng nhập thành công");</script>';
+        }
+        else {
             header("Location:index.php?page=login");
+            echo '<script language="javascript">alert("Tài khoản hoặc mật khẩu không đúng");</script>';
         }
     }
     ?>
@@ -45,11 +48,11 @@
                         <form action="#">
                             <p>
                                 <label>Username or email <span>*</span></label>
-                                <input type="text" name="user_name" id="user_name">
+                                <input type="text" name="user_name" id="user_name" required onclick="CheckEmail(this);" onclick="CheckEmail(this);">
                             </p>
                             <p>
                                 <label>Passwords <span>*</span></label>
-                                <input type="password" name="password" id="password">
+                                <input type="password" name="password" id="password" required oninvalid="CheckPassword(this);" oninput="CheckPassword(this);">
                             </p>
                             <div class="login_submit">
                                 <a href="#">Lost your password?</a>
