@@ -40,9 +40,6 @@
                             $resultPro = mysqli_query($conn, $sqlSelectPro);
                         ?>
                         <thead>
-                            <?php
-                            foreach($resultPro as $rowPro) {
-                            ?>
                         <tr>
                             <th width="10"><input type="checkbox" id="all"></th>
                             <th>Mã sản phẩm</th>
@@ -55,6 +52,9 @@
                             <th>Chức năng</th>
                         </tr>
                         </thead>
+                        <?php
+                        foreach($resultPro as $rowPro) {
+                        ?>
                         <tbody>
                         <tr>
                             <td width="10"><input type="checkbox" name="check1" value="1"></td>
@@ -82,6 +82,5 @@
                     </table>
                 </div>
             </div>
-        </div>
     </div>
 </main>

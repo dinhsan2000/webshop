@@ -30,12 +30,12 @@
                         $resultDetailPro = mysqli_query($conn, $sqlDetailPro);
                         // if (mysqli_num_rows($resultProHome) > 0) {
                         //  while ($rowProHome = mysqli_fetch_assoc($resultProHome)) {
-                        $row = (mysqli_fetch_row($resultDetailPro));
+                        $rowdetail = (mysqli_fetch_row($resultDetailPro));
 //                        echo "<pre>";
 //                        print_r($row);
                         ?>
                         <a href="#">
-                            <img id="zoom1" src="<?php echo $row[5] ?>" data-zoom-image="<?php echo $row[5] ?>" alt="big-1">
+                            <img id="zoom1" src="<?php echo $rowdetail[5] ?>" data-zoom-image="<?php echo $rowdetail[5] ?>" alt="big-1">
                         </a>
                     </div>
 
@@ -62,7 +62,7 @@
             <div class="col-lg-7 col-md-7">
                 <div class="product_d_right">
                     <form action="#">
-                        <h1><?php echo $row[1] ?></h1>
+                        <h1><?php echo $rowdetail[1] ?></h1>
                         <div class=" product_ratting">
                             <ul>
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -75,17 +75,17 @@
                             </ul>
                         </div>
                         <div class="product_price">
-                            <span class="current_price"><?php echo number_format($row["6"],0,",",".")?>Đ</span>
+                            <span class="current_price"><?php echo number_format($rowdetail["6"],0,",",".")?>Đ</span>
                         </div>
                         <div class="product_desc">
-                            <p><?php echo $row["7"] ?></p>
+                            <p><?php echo $rowdetail["7"] ?></p>
                         </div>
 
                         <div class="product_variant color">
                             <h3>Color</h3>
                             <select class="niceselect_option" id="color" name="produc_color">
                                 <option selected value="">Choose in Color</option>
-                                <option selected value="<?php echo $row["11"] ?>"><?php echo $row["11"] ?></option>
+                                <option selected value="<?php echo $rowdetail["11"] ?>"><?php echo $rowdetail["11"] ?></option>
                             </select>
                         </div>
                         <div class="product_variant size">
@@ -95,15 +95,27 @@
                             $row = (mysqli_fetch_row($resultSize));
                             ?>
                             <h3>size</h3>
-                            <select class="niceselect_option" id="color1" name="produc_color">
-                                <option selected value="1">size</option>
+                            <select class="niceselect_option" id="size" name="produc_size">
+                                <option selected value="1">Size</option>
                                 <option value="<?php echo $row["0"] ?>"><?php echo $row["1"].'-'.$row["2"] ?></option>
                             </select>
                         </div>
                         <div class="product_variant quantity">
-                            <label>quantity</label>
-                            <input min="1" max="100" value="1" type="number">
-                            <button class="button" type="submit">add to cart</button>
+                            <label>Quantity</label>
+                            <span class="input-group-button" onclick="minus()">
+                                <button type="button" class="button hollow circle" datatype="minus" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </span>
+                            <input min="1" value="1" name="quantity" id="quantity" type="text">
+                            <span class="input-group-button" onclick="plus()">
+                                <button type="button" class="button hollow circle" datatype="plus">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="quantity">
+                            <span class="addtocart"><a href="javascript:void(0)" onclick="addCart(<?php echo $rowdetail[0]; ?>)"> Thêm vào giỏ hàng</a></span>
                         </div>
                         <div class=" product_d_action">
                             <ul>
@@ -124,6 +136,24 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mua hàng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Sản phẩm đã được thêm vào giỏ hàng thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua</button>
             </div>
         </div>
     </div>
@@ -232,515 +262,5 @@
     </div>
 </div>
 <!--product info end-->
-
-<!--product section area start-->
-<section class="product_section related_product">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section_title">
-                    <h2>Related Products</h2>
-                    <p>Contemporary, minimal and modern designs embody the Lavish Alice handwriting</p>
-                </div>
-            </div>
-        </div>
-        <div class="product_area">
-            <div class="row">
-                <div class="product_carousel product_three_column4 owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product21.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product22.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                                <div class="product_sale">
-                                    <span>-7%</span>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Marshall Portable  Bluetooth</a></h3>
-                                <span class="current_price">£60.00</span>
-                                <span class="old_price">£86.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product27.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product28.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Koss KPH7 Portable</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product6.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product5.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Beats Solo2 Solo 2</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product7.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product8.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                                <div class="product_sale">
-                                    <span>-7%</span>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Beats EP Wired</a></h3>
-                                <span class="current_price">£60.00</span>
-                                <span class="old_price">£86.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product24.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product25.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Bose SoundLink Bluetooth</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product10.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product11.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                                <div class="product_sale">
-                                    <span>-7%</span>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Apple iPhone SE 16GB</a></h3>
-                                <span class="current_price">£60.00</span>
-                                <span class="old_price">£86.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product23.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product24.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">JBL Flip 3 Portable</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-<!--product section area end-->
-
-<!--product section area start-->
-<section class="product_section upsell_product">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section_title">
-                    <h2>Upsell Products</h2>
-                    <p>Contemporary, minimal and modern designs embody the Lavish Alice handwriting</p>
-                </div>
-            </div>
-        </div>
-        <div class="product_area">
-            <div class="row">
-                <div class="product_carousel product_three_column4 owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product15.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product16.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                                <div class="product_sale">
-                                    <span>-7%</span>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Marshall Portable  Bluetooth</a></h3>
-                                <span class="current_price">£60.00</span>
-                                <span class="old_price">£86.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product17.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product18.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Koss KPH7 Portable</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product19.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product20.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Beats Solo2 Solo 2</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product7.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product8.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                                <div class="product_sale">
-                                    <span>-7%</span>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Beats EP Wired</a></h3>
-                                <span class="current_price">£60.00</span>
-                                <span class="old_price">£86.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product24.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product25.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Bose SoundLink Bluetooth</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product10.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product11.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-
-                                <div class="product_sale">
-                                    <span>-7%</span>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">Apple iPhone SE 16GB</a></h3>
-                                <span class="current_price">£60.00</span>
-                                <span class="old_price">£86.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single_product">
-                            <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="assets/img/product/product23.jpg" alt=""></a>
-                                <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product24.jpg" alt=""></a>
-                                <div class="product_action">
-                                    <div class="hover_action">
-                                        <a  href="#"><i class="fa fa-plus"></i></a>
-                                        <div class="action_button">
-                                            <ul>
-
-                                                <li><a title="add to cart" href="cart.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-                                                <li><a href="wishlist.html" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-
-                                                <li><a href="compare.html" title="Add to Compare"><i class="fa fa-sliders" aria-hidden="true"></i></a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="quick_button">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box" title="quick_view">+ quick view</a>
-                                </div>
-                            </div>
-                            <div class="product_content">
-                                <h3><a href="product-details.html">JBL Flip 3 Portable</a></h3>
-                                <span class="current_price">£60.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-<!--product section area end-->
 
 <?php }mysqli_close($conn)?>

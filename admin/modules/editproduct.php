@@ -69,20 +69,7 @@
     <a class="btn btn-cancel" href="table-data-product.html">Hủy bỏ</a>
     </div>
     <?php
-    if(isset($_POST['edit'])) {
-        $pro_name = $_POST['pro_name'];
-        $status = false;
-        $status = isset($_POST['status']) ? 1 : 0;
-        $price = $_POST['price'];
-        $factory = $_POST['factory_id'];
-        $cat_id = $_POST['cat_id'];
-        $description = $_POST['description'];
-        $date_create = date('y-m-d H:i:s');
-        $sqlUpdate = "UPDATE `products` SET pro_name='$pro_name', status='$status', price='$price', factory_id='$factory', date_create='$date_create', description ='$description' WHERE pro_id=" . $_GET["id"];
-        echo "<pre>";
-        print_r($sqlUpdate);
-        $resultEdit = mysqli_query($conn, $sqlUpdate);
-    }
+    updateCart($conn);
     ?>
 </form>
 </main>

@@ -7,7 +7,7 @@
                     <div class="widgets_container contact_us">
                         <h3>Liên hệ chúng tôi</h3>
                         <div class="footer_contact">
-                            <p>Address: 238 Hoàng Quốc Việt, Phường Cổ Nhuế, Quận Nam Từ Liêm, Hà Nội</p>
+                            <p>Address: Hoàng Quốc Việt, Phường Cổ Nhuế, Quận Nam Từ Liêm, Hà Nội</p>
                             <p>Phone: <a href="tel:+(+84)888195313">(+84) 972580430</a> </p>
                             <p>Email: <a href="mailto:dinhsan200@gmail.com">dinhsan200@gmail.com</a></p>
                             <ul>

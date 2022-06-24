@@ -1,6 +1,3 @@
- <?php
- $conn = mysqli_connect('localhost', 'root', '', 'webshop');
- ?>
  <div class="row">
         <div class="col-md-12">
             <div class="tile">
@@ -192,13 +189,7 @@ MODAL CHỨC VỤ
               </span>
                     </div>
                         <?php
-                        if(isset($_POST['addFac'])) {
-                            $fac_name = $_POST['fac_name'];
-                            $status = 1;
-                            $date_create = date('y-m-d H:i:s');
-                            $sqlInsertFac = "INSERT INTO `factory` (fac_name, status, date_create) VALUE ('$fac_name', '$status', '$date_create')";
-                            mysqli_query($conn, $sqlInsertFac);
-                        }
+                        addFac($conn);
                         ?>
                     <div class="form-group col-md-12">
                         <label class="control-label">Nhập tên nhà cung cấp mới</label>
@@ -231,13 +222,7 @@ MODAL DANH MỤC
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <?php
-            if(isset($_POST['addCat'])) {
-                $cat_name = $_POST['cat_name'];
-                $status = 1;
-                $date_create = date('y-m-d H:i:s');
-                $sqlInsertFac = "INSERT INTO `category` (cat_name, status, date_create) VALUE ('$cat_name', '$status', '$date_create')";
-                mysqli_query($conn, $sqlInsertFac);
-            }
+            addCat($conn);
             ?>
             <div class="modal-body">
                 <div class="row">

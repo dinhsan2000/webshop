@@ -5,9 +5,9 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index.php">home</a></li>
+                        <li><a href="index.php">Trang chủ</a></li>
                         <li>/</li>
-                        <li>cart</li>
+                        <li>Giỏ hàng</li>
                     </ul>
                 </div>
             </div>
@@ -21,52 +21,52 @@
     <div class="container">
         <form action="#">
             <div class="row">
-                <div class="col-12">
+                <div class="col-sm-12">
                     <div class="table_desc">
                         <div class="cart_page table-responsive">
                             <table>
+                                <?php
+                                $total = 0;
+                                $ship = 30000;
+                                if(isset($_SESSION["cart"])) {
+                                foreach ($_SESSION["cart"] as $key=>$value) {
+                                }
+                                ?>
                                 <thead>
                                 <tr>
-                                    <th class="product_remove">Delete</th>
-                                    <th class="product_thumb">Image</th>
-                                    <th class="product_name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product_quantity">Quantity</th>
-                                    <th class="product_total">Total</th>
+                                    <th class="product_remove">Xoá</th>
+                                    <th class="product_thumb">Hình ảnh</th>
+                                    <th class="product_name">Sản phẩm</th>
+                                    <th class="product_name">Kích cỡ</th>
+                                    <th class="product_name">Màu sắc</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product_quantity">Số lượng</th>
+<!--                                    <th class="product_total">Total</th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                foreach ($_SESSION["cart"] as $key=>$value) {
+                                ?>
                                 <tr>
-                                    <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                    <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a></td>
-                                    <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                    <td class="product-price">£65.00</td>
-                                    <td class="product_quantity"><input min="1" max="100" value="1" type="number"></td>
-                                    <td class="product_total">£130.00</td>
+                                    <td class="product_remove"><a href="javascrip:void(0)" onclick="deleteCart(<?php echo $key ?>)"><i class="fa fa-trash-o"></i></a></td>
+                                    <td class="product_thumb"><img src="<?php echo $value["image"] ?>" alt=""></td>
+                                    <td class="product_name"><?php echo $value["name"] ?></td>
+                                    <td class="product_name"><?php echo $value["size"] ?></td>
+                                    <td class="product_name"><?php echo $value["color"] ?></td>
+                                    <td class="product-price"><?php echo number_format($value["price"] * $value["quantity"],0,",",".") ?>Đ</td>
+                                    <td class="product_quantity">
+                                        <input min="1" max="100" onblur="updateCart(<?php echo $key ?>)" name="quantity_<?php echo $key ?>" id="quantity_<?php echo $key ?>" value="<?php echo $value["quantity"]; $total +=$value["price"] * $value["quantity"] ?>" type="text">
+                                    </td>
+                                    <?php } ?>
+<!--                                    <td class="product_total"></td>-->
                                 </tr>
-                                <tr>
-                                    <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                    <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a></td>
-                                    <td class="product_name"><a href="#">Handbags justo</a></td>
-                                    <td class="product-price">£90.00</td>
-                                    <td class="product_quantity"><input min="1" max="100" value="1" type="number"></td>
-                                    <td class="product_total">£180.00</td>
-
-
-                                </tr>
-                                <tr>
-                                    <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                    <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product3.jpg" alt=""></a></td>
-                                    <td class="product_name"><a href="#">Handbag elit</a></td>
-                                    <td class="product-price">£80.00</td>
-                                    <td class="product_quantity"><input min="1" max="100" value="1" type="number"></td>
-                                    <td class="product_total">£160.00</td>
-                                </tr>
+                                <?php } ?>
                                 </tbody>
                             </table>
                         </div>
                         <div class="cart_submit">
-                            <button type="submit">update cart</button>
+                            <button type="submit" href="index.php?page=category">Tiếp tục mua hàng</button>
                         </div>
                     </div>
                 </div>
@@ -77,34 +77,33 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="coupon_code left">
-                            <h3>Coupon</h3>
+                            <h3>Mã giảm giá</h3>
                             <div class="coupon_inner">
-                                <p>Enter your coupon code if you have one.</p>
-                                <input placeholder="Coupon code" type="text">
-                                <button type="submit">Apply coupon</button>
+                                <p>Nhập vào mã giảm giá của bạn.</p>
+                                <input placeholder="Mã giảm giá" type="text">
+                                <button type="submit">Xác nhận mã giảm giá</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="coupon_code right">
-                            <h3>Cart Totals</h3>
+                            <h3>Tổng giỏ hàng</h3>
                             <div class="coupon_inner">
                                 <div class="cart_subtotal">
-                                    <p>Subtotal</p>
-                                    <p class="cart_amount">£215.00</p>
+                                    <p>Tổng phụ</p>
+                                    <p class="cart_amount"><?php echo number_format($total,0,",",".") ?>Đ</p>
                                 </div>
                                 <div class="cart_subtotal ">
-                                    <p>Shipping</p>
-                                    <p class="cart_amount"><span>Flat Rate:</span> £255.00</p>
+                                    <p>Phí vận chuyển</p>
+                                    <p class="cart_amount"><?php echo number_format($ship,0,",",".")?>Đ</p>
                                 </div>
-                                <a href="#">Calculate shipping</a>
 
                                 <div class="cart_subtotal">
-                                    <p>Total</p>
-                                    <p class="cart_amount">£215.00</p>
+                                    <p>Tổng</p>
+                                    <p class="cart_amount"><?php echo number_format($total + $ship,0,",",".")?>Đ</p>
                                 </div>
                                 <div class="checkout_btn">
-                                    <a href="#">Proceed to Checkout</a>
+                                    <a href="index.php?page=checkout">Tiến hành thanh toán</a>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +111,6 @@
                 </div>
             </div>
             <!--coupon code area end-->
-
         </form>
     </div>
 </div>

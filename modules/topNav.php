@@ -1,7 +1,13 @@
 <!-- Main Wrapper Start -->
 <!--Offcanvas menu area start-->
 <div class="off_canvars_overlay">
-
+    <?php
+    $numberpro = 0;
+    if(isset($_SESSION["cart"])) {
+        foreach ($_SESSION["cart"] as $key=>$value) {
+            $numberpro += $value["quantity"];
+        }
+    } ?>
 </div>
 <div class="offcanvas_menu">
     <div class="canvas_open">
@@ -41,54 +47,8 @@
         </div>
         <div class="cart_area">
             <div class="cart_link">
-                <a href="#"><i class="fa fa-shopping-basket"></i>2 sản phẩm</a>
-                <!--mini cart-->
-                <div class="mini_cart">
-                    <div class="cart_item top">
-                        <div class="cart_img">
-                            <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
-                        </div>
-                        <div class="cart_info">
-                            <a href="#">Apple iPhone SE 16GB</a>
-
-                            <span>1x $60.00</span>
-
-                        </div>
-                        <div class="cart_remove">
-                            <a href="#"><i class="ion-android-close"></i></a>
-                        </div>
-                    </div>
-                    <div class="cart_item bottom">
-                        <div class="cart_img">
-                            <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                        </div>
-                        <div class="cart_info">
-                            <a href="#">Marshall Portable  Bluetooth</a>
-                            <span> 1x $160.00</span>
-                        </div>
-                        <div class="cart_remove">
-                            <a href="#"><i class="ion-android-close"></i></a>
-                        </div>
-                    </div>
-                    <div class="cart__table">
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td class="text-left">Tổng cộng  :</td>
-                                <td class="text-right">$184.00</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="cart_button view_cart">
-                        <a href="index.php?page=checkout">Giỏ hàng</a>
-                    </div>
-                    <div class="cart_button checkout">
-                        <a href="index.php?page=checkout">Thanh toán</a>
-                    </div>
+                <a href="index.php?page=cart"><i class="fa fa-shopping-basket"></i> <?php echo $numberpro?> Sản Phẩm</a>
                 </div>
-                <!--mini cart end-->
             </div>
         </div>
         <div id="menu" class="text-left ">
@@ -180,52 +140,7 @@
                     <div class="col-lg-4">
                         <div class="cart_area">
                             <div class="cart_link">
-                                <a href="#"><i class="fa fa-shopping-basket"></i>2 sản phẩm</a>
-                                <!--mini cart-->
-                                <div class="mini_cart">
-                                    <div class="cart_item top">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">Apple iPhone SE 16GB</a>
-                                            <span>1x $60.00</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart_item bottom">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">Marshall Portable  Bluetooth</a>
-                                            <span> 1x $160.00</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart__table">
-                                        <table>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-left">Tổng đơn:</td>
-                                                <td class="text-right">$184.00</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="cart_button view_cart">
-                                        <a href="index.php?page=cart">Giỏ hàng</a>
-                                    </div>
-                                    <div class="cart_button checkout">
-                                        <a href="index.php?page=checkout">Thanh toán</a>
-                                    </div>
-                                </div>
-                                <!--mini cart end-->
+                                <a href="index.php?page=cart"><i class="fa fa-shopping-basket"> <?php echo $numberpro?> Sản Phẩm</i></a>
                             </div>
                         </div>
                     </div>

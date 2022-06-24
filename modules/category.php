@@ -10,7 +10,7 @@
                         <li>shop</li>
                     </ul>
                 </div>
-				                        <?php
+                    <?php
                         if (isset($_GET["id"])) {
                             $cat_id = $_GET["id"];
                             $sqlCat = "SELECT * FROM category WHERE cat_id=$cat_id";
@@ -192,17 +192,64 @@
                                 </div>
                             </div>
                         </div>
-                                <?php }} ?>
+                            <?php }} ?>
                     </div>
                 </div>
                     <div class="shop_toolbar t_bottom">
                         <div class="pagination">
                             <ul>
-                                <li class="current"></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li class="next"><a href="#">next</a></li>
-                                <li><a href="#">>></a></li>
+<!--                                --><?php
+//                                $resultPage = mysqli_query($conn, 'SELECT count(*) as total from products');
+//                                $row = mysqli_fetch_assoc($resultPage);
+//                                $total_records = $row['total'];
+//                                // tìm limit và current page
+//                                $page = 1;
+//                                if(isset($_GET['category'])){
+//                                    $page = $_GET['category'];
+//                                }
+//                                if($page <=0)
+//                                {
+//                                    $page =1;
+//                                }
+//                                $limit = 6;
+//                                // tính tổng số page
+//                                $total_page = ceil($total_records / $limit);
+//                                if ($page > $total_page) {
+//                                    $page = $total_page;
+//                                } else if ($page < 1) {
+//                                    $page = 1;
+//                                }
+//                                // tìm start page
+//                                $start = ($page - 1) * $limit;
+//                                // truy vấn data danh sách products
+//                                $result = mysqli_query($conn, "SELECT * FROM products LIMIT $start, $limit");
+//
+//                                // PHẦN HIỂN THỊ PHÂN TRANG
+//                                // BƯỚC 7: HIỂN THỊ PHÂN TRANG
+//
+//                                // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+//                                if ($page > 1 && $total_page > 1){
+//                                    echo '<a href="index.php?page=categor=y'.($page-1).'">Prev</a> | ';
+//                                }
+//
+//                                // Lặp khoảng giữa
+//                                for ($i = 1; $i <= $total_page; $i++){
+//                                    // Nếu là trang hiện tại thì hiển thị thẻ span
+//                                    // ngược lại hiển thị thẻ a
+//                                    if ($i == $page){
+//                                        echo '<span>'.$i.'</span> | ';
+//                                    }
+//                                    else{
+//                                        echo '<a href="index.php?page=category='.$i.'">'.$i.'</a> | ';
+//                                    }
+//                                }
+//
+//                                // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+//                                if ($page < $total_page && $total_page > 1){
+//                                    echo '<a href="index.php?page=category/'.($page+1).'">Next</a> | ';
+//                                    echo ($page);
+//                                }
+//                                ?>
                             </ul>
                         </div>
                     </div>

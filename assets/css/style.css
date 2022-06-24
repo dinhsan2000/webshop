@@ -7137,6 +7137,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin-bottom: 16px;
   font-weight: 600;
   color: #242424;
+  margin-top: 10px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .widgets_container h3 {
@@ -8540,23 +8541,40 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   height: 50px;
   border-radius: 3px;
 }
-.product_variant.quantity button:hover {
-  background: #ff6a28;
+.quantity span a{
+  border: 0;
+  border: #242424 solid 15px;
+  color: #fff;
+  border-radius: 3px;
+  margin-left: 40px;
+  font-size: 13px;
+  line-height: 50px;
+  padding: 0 70px;
+  background-color: #242424;
+  width: 100%;
+}
+.product_variant.quantity .input-group-button .circle {
+  border-radius: 5px;
+  padding: 1px 20px;
+  color: #fff;
+  background-color: #242424;
+}
+.quantity span a:hover {
+  background: #242424;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .product_variant.quantity button {
-    padding: 0 45px;
+  .quantity span a {
+    padding: 0 80px;
   }
 }
 @media only screen and (max-width: 767px) {
-  .product_variant.quantity button {
-    padding: 0 27px;
+  .quantity span a {
+    padding: 0 60px;
     font-size: 12px;
     line-height: 45px;
     height: 45px;
   }
 }
-
 .product_d_action {
   margin-bottom: 10px;
 }

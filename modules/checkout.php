@@ -5,9 +5,9 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index.php">home</a></li>
+                        <li><a href="index.php">Trang chủ</a></li>
                         <li>/</li>
-                        <li>checkout</li>
+                        <li>Thanh toán</li>
                     </ul>
                 </div>
             </div>
@@ -15,7 +15,9 @@
     </div>
 </div>
 <!--breadcrumbs area end-->
-
+<?php
+addCart($conn);
+?>
 <!--Checkout page section-->
 <div class="Checkout_section" id="accordion">
     <div class="container">
@@ -24,190 +26,32 @@
                 <div class="user-actions">
                     <h3>
                         <i class="fa fa-file-o" aria-hidden="true"></i>
-                        Returning customer?
-                        <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_login"
-                           aria-expanded="true">Click here to login</a>
-
+                        Bạn là khách hàng cũ?
+                        <a href="index.php?page=login"
+                           aria-expanded="true">Nhấn vào đây để đăng nhập</a>
                     </h3>
-                    <div id="checkout_login" class="collapse" data-parent="#accordion">
-                        <div class="checkout_info">
-                            <p>If you have shopped with us before, please enter your details in the boxes below. If
-                                you are a new customer please proceed to the Billing & Shipping section.</p>
-                            <form action="#">
-                                <div class="form_group">
-                                    <label>Username or email <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="form_group">
-                                    <label>Password <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="form_group group_3 ">
-                                    <button type="submit">Login</button>
-                                    <label for="remember_box">
-                                        <input id="remember_box" type="checkbox">
-                                        <span> Remember me </span>
-                                    </label>
-                                </div>
-                                <a href="#">Lost your password?</a>
-                            </form>
-                        </div>
-                    </div>
                 </div>
-                <div class="user-actions">
-                    <h3>
-                        <i class="fa fa-file-o" aria-hidden="true"></i>
-                        Returning customer?
-                        <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_coupon"
-                           aria-expanded="true">Click here to enter your code</a>
-
-                    </h3>
-                    <div id="checkout_coupon" class="collapse" data-parent="#accordion">
-                        <div class="checkout_info">
-                            <form action="#">
-                                <input placeholder="Coupon code" type="text">
-                                <button type="submit">Apply coupon</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <form method="post">
         <div class="checkout_form">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <form action="#">
-                        <h3>Billing Details</h3>
+                        <h3>Chi tiết hoá đơn</h3>
                         <div class="row">
-
-                            <div class="col-lg-6 mb-20">
-                                <label>First Name <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="col-lg-6 mb-20">
-                                <label>Last Name <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="col-12 mb-20">
-                                <label>Company Name</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-12 mb-20">
-                                <label for="country">country <span>*</span></label>
-                                <select class="niceselect_option" name="cuntry" id="country">
-                                    <option value="2">bangladesh</option>
-                                    <option value="3">Algeria</option>
-                                    <option value="4">Afghanistan</option>
-                                    <option value="5">Ghana</option>
-                                    <option value="6">Albania</option>
-                                    <option value="7">Bahrain</option>
-                                    <option value="8">Colombia</option>
-                                    <option value="9">Dominican Republic</option>
-
-                                </select>
-                            </div>
-
-                            <div class="col-12 mb-20">
-                                <label>Street address <span>*</span></label>
-                                <input placeholder="House number and street name" type="text">
-                            </div>
-                            <div class="col-12 mb-20">
-                                <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                            </div>
-                            <div class="col-12 mb-20">
-                                <label>Town / City <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="col-12 mb-20">
-                                <label>State / County <span>*</span></label>
-                                <input type="text">
+                            <div class="col-lg-12 mb-20">
+                                <label>Họ và Tên <span>*</span></label>
+                                <input type="text" name="fullname" required id="fullname">
                             </div>
                             <div class="col-lg-6 mb-20">
                                 <label>Phone<span>*</span></label>
-                                <input type="text">
-
+                                <input type="text" name="phone_number" id="phone_number" required>
                             </div>
                             <div class="col-lg-6 mb-20">
-                                <label> Email Address <span>*</span></label>
-                                <input type="text">
-
+                                <label> Địa chỉ Email <span>*</span></label>
+                                <input type="text" name="email" id="email" required>
                             </div>
                             <div class="col-12 mb-20">
-                                <input id="account" type="checkbox" data-target="createp_account" />
-                                <label for="account" data-toggle="collapse" data-target="#collapseOne"
-                                       aria-controls="collapseOne">Create an account?</label>
-
-                                <div id="collapseOne" class="collapse one" data-parent="#accordion">
-                                    <div class="card-body1">
-                                        <label> Account password <span>*</span></label>
-                                        <input placeholder="password" type="password">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-20">
-                                <input id="address" type="checkbox" data-target="createp_account" />
-                                <label class="righ_0" for="address" data-toggle="collapse"
-                                       data-target="#collapsetwo" aria-controls="collapseOne">Ship to a different
-                                    address?</label>
-
-                                <div id="collapsetwo" class="collapse one" data-parent="#accordion">
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-20">
-                                            <label>First Name <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-lg-6 mb-20">
-                                            <label>Last Name <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>Company Name</label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <div class="select_form_select">
-                                                <label for="countru_name">country <span>*</span></label>
-                                                <select class="niceselect_option" name="cuntry" id="countru_name">
-                                                    <option value="2">bangladesh</option>
-                                                    <option value="3">Algeria</option>
-                                                    <option value="4">Afghanistan</option>
-                                                    <option value="5">Ghana</option>
-                                                    <option value="6">Albania</option>
-                                                    <option value="7">Bahrain</option>
-                                                    <option value="8">Colombia</option>
-                                                    <option value="9">Dominican Republic</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 mb-20">
-                                            <label>Street address <span>*</span></label>
-                                            <input placeholder="House number and street name" type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>Town / City <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>State / County <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-lg-6 mb-20">
-                                            <label>Phone<span>*</span></label>
-                                            <input type="text">
-
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label> Email Address <span>*</span></label>
-                                            <input type="text">
-
-                                        </div>
-                                    </div>
-                                </div>
+                                <label>Địa chỉ <span>*</span></label>
+                                <input name="address" id="address" placeholder="Số nhà và tên đường, quận huyện, tỉnh của bạn" required type="text">
                             </div>
                             <div class="col-12">
                                 <div class="order-notes">
@@ -217,87 +61,93 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                    <form action="#">
                         <h3>Your order</h3>
                         <div class="order_table table-responsive">
+                            <?php
+                            $subtotal = 0;
+                            $ordertotal = 0;
+                            $shipping = 30000;
+                            if(isset($_SESSION["cart"])) {
+                                foreach ($_SESSION["cart"] as $key => $value) {
+                                    $subtotal += $value["price"] * $value["quantity"];
+                                    $ordertotal = $shipping + $subtotal;
+                                }
+                            ?>
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Total</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td> Handbag fringilla <strong> × 2</strong></td>
-                                    <td> $165.00</td>
+                                    <?php
+                                    foreach ($_SESSION["cart"] as $key => $value) {
+                                    ?>
+                                    <td> <?php echo $value["name"]?> <strong> x <?php echo $value["quantity"]?></strong></td>
+                                    <td> <?php echo number_format($value["price"] * $value["quantity"],0,",",".")?>Đ</td>
                                 </tr>
-                                <tr>
-                                    <td> Handbag justo <strong> × 2</strong></td>
-                                    <td> $50.00</td>
-                                </tr>
-                                <tr>
-                                    <td> Handbag elit <strong> × 2</strong></td>
-                                    <td> $50.00</td>
-                                </tr>
-                                <tr>
-                                    <td> Handbag Rutrum <strong> × 1</strong></td>
-                                    <td> $50.00</td>
-                                </tr>
+                                        <?php } ?>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <th>Cart Subtotal</th>
-                                    <td>$215.00</td>
-                                </tr>
-                                <tr>
-                                    <th>Shipping</th>
-                                    <td><strong>$5.00</strong></td>
+                                    <th>Phí vận chuyển</th>
+                                    <td><?php echo number_format($shipping,0,",",".") ?>Đ<strong></strong></td>
                                 </tr>
                                 <tr class="order_total">
-                                    <th>Order Total</th>
-                                    <td><strong>$220.00</strong></td>
+                                    <th>Tổng đơn hàng</th>
+                                    <td><strong><?php echo number_format($ordertotal,0,",","."); ?>Đ</strong></td>
                                 </tr>
                                 </tfoot>
                             </table>
+                            <?php } ?>
                         </div>
                         <div class="payment_method">
                             <div class="panel-default">
-                                <input id="payment" name="check_method" type="radio"
-                                       data-target="createp_account" />
-                                <label for="payment" data-toggle="collapse" data-target="#method"
-                                       aria-controls="method">Create an account?</label>
-
-                                <div id="method" class="collapse one" data-parent="#accordion">
-                                    <div class="card-body1">
-                                        <p>Please send a check to Store Name, Store Street, Store Town, Store State
-                                            / County, Store Postcode.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-default">
-                                <input id="payment_defult" name="check_method" type="radio"
+                                <?php
+                                $sqlPay = "SELECT * FROM payment WHERE status = 1";
+                                $resultPay = mysqli_query($conn, $sqlPay);
+                                if (mysqli_num_rows($resultPay) > 0) {
+                                while ($row = mysqli_fetch_assoc($resultPay)) {
+                                ?>
+                                <input id="payment_defult" value="<?php echo $row["payment_id"] ?>" name="payment[]" id="payment[]" type="radio"
                                        data-target="createp_account" />
                                 <label for="payment_defult" data-toggle="collapse" data-target="#collapsedefult"
-                                       aria-controls="collapsedefult">PayPal <img src="assets/img/icon/papyel.png"
-                                                                                  alt=""></label>
+                                       aria-controls="collapsedefult"><?php echo $row["payment_name"] ?></label>
 
                                 <div id="collapsedefult" class="collapse one" data-parent="#accordion">
                                     <div class="card-body1">
-                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a
-                                            PayPal account.</p>
+                                        <p>Thanh toán khi nhận hàng, có thể kiểm hàng trước khi nhận</p>
                                     </div>
                                 </div>
                             </div>
+                            <?php }} ?>
                             <div class="order_button">
-                                <button type="submit">Proceed to PayPal</button>
+                                <p><button type="submit" name="addNew">Thanh toán</button></p>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Đặt hàng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Đặt hàng thành công, cảm ơn bạn chúng tôi sẽ giao hàng sớm nhất cho bạn</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua</button>
             </div>
         </div>
     </div>
