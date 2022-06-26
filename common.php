@@ -43,13 +43,14 @@ function addCart ($conn)
         $last_id = mysqli_insert_id($conn);
         if (isset($_SESSION["cart"])) {
             foreach ($_SESSION["cart"] as $key => $value) {
+                $name = $value["name"];
                 $price = $value["price"];
                 $quantity = $value["quantity"];
                 $color = $value["color"];
                 $size_name = $value["size"];
                 $image = $value["image"];
-                $sqlInsertOrderDetail = "INSERT INTO `order_detail`(`order_id`, `pro_id`, `price`, `color`, `size_name`, `quantity`, `status`, `date_create`, `image`)";
-                $sqlInsertOrderDetail .= "VALUES ('$last_id','$key','$price','$color','$size_name','$quantity','$status','$date_create', '$image')";
+                $sqlInsertOrderDetail = "INSERT INTO `order_detail`(`order_id`, `pro_id`, `price`, `color`, `size_name`, `quantity`, `status`, `date_create`, `image`, `pro_name`)";
+                $sqlInsertOrderDetail .= "VALUES ('$last_id','$key','$price','$color','$size_name','$quantity','$status','$date_create', '$image', '$name')";
                 mysqli_query($conn, $sqlInsertOrderDetail);
             }
         }

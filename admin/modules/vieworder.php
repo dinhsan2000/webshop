@@ -13,8 +13,10 @@
                     }
                     ?>
                     <tr>
+                        <th>STT</th>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
+                        <th>Ảnh</th>
                         <th>Size</th>
                         <th>Màu</th>
                         <th>Số lượng</th>
@@ -28,11 +30,15 @@
                         ?>
                         <td width="10"><input type="checkbox" name="check1" value="1"></td>
                         <td><?php echo $row['pro_id'] ?></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo $row['pro_name'] ?></td>
+                        <td>
+                            <img style="width: 100px" src="<?php echo "/webshop/".$row['image']?>" alt="">
+                        </td>
+                        <td><?php echo $row['size_name'] ?></td>
+                        <td><?php echo $row['color'] ?></td>
+                        <td><?php echo $row['quantity'] ?></td>
+                        <td><?php echo $row['price'] ?></td>
+                        <td><?php echo $row['price'] * $row['quantity']?></td>
                         </tr>
                     <?php } ?>
                     </tbody>
