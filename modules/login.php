@@ -20,10 +20,10 @@
 <form method="post">
     <?php
     if (isset($_POST["login"])) {
-        $user_name = trim($_POST["user_name"]);
+        $email = trim($_POST["email"]);
         $password = mysqli_real_escape_string($conn, $_POST["password"]);
         $password = md5($password);
-        $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' OR email = '$user_name' AND password = '$password' AND status = 1";
+        $sqlLogin = "SELECT * FROM user WHERE email = '$email' AND password = '$password' AND status = 1";
         $result = mysqli_query($conn, $sqlLogin);
         if (mysqli_num_rows($result)) {
             // tạo session nếu login thành công
@@ -47,8 +47,8 @@
                         <h2>login</h2>
                         <form action="#">
                             <p>
-                                <label>Username or email <span>*</span></label>
-                                <input type="text" name="user_name" id="user_name" required onclick="CheckEmail(this);" onclick="CheckEmail(this);">
+                                <label>Email <span>*</span></label>
+                                <input type="text" name="email" id="email" required>
                             </p>
                             <p>
                                 <label>Passwords <span>*</span></label>

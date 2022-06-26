@@ -28,13 +28,16 @@
                 <li class="top_links"><a href="#">Tài Khoản của tôi <i class="ion-chevron-down"></i></a>
                     <ul class="dropdown_links">
                         <li><a href="my-account.html">Tài khoản</a></li>
-                        <li><a href="index.php?page=login"
-                                <?php
-                                if(isset($_SESSION["login"])) {
-                                    echo $_SESSION["login"][1];
-                                }
-                                ?></a></li>
-                        <li><a href="index.php?page=logout">Đăng xuất</a></li>
+                        <li><a href="login.html"
+                            <?php
+                            if(isset($_SESSION["login"])) {
+                                echo $_SESSION["login"][1].'</br>';
+                                echo "<a href='logout.html'>Đăng xuất</a>";
+                            } else {
+                                echo "Đăng Nhập";
+                            }
+                            ?></a></li>
+                        <li><a href="logout.html">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -47,28 +50,28 @@
         </div>
         <div class="cart_area">
             <div class="cart_link">
-                <a href="index.php?page=cart"><i class="fa fa-shopping-basket"></i> <?php echo $numberpro?> Sản Phẩm</a>
+                <a href="cart.html"><i class="fa fa-shopping-basket"></i> <?php echo $numberpro?> Sản Phẩm</a>
                 </div>
             </div>
         </div>
         <div id="menu" class="text-left ">
             <ul class="offcanvas_main_menu">
                 <li class="active">
-                    <a href="index.php">Trang chủ</a>
+                    <a href="index.html">Trang chủ</a>
                 </li>
                 <li class="active">
-                    <a href="index.php?page=category">Sản phẩm</a>
+                    <a href="category.html">Cửa hàng</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="index.php?page=about">Chúng tôi</a>
+                    <a href="about.html">Chúng tôi</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="index.php?page=contact">Liên hệ</a>
+                    <a href="contact.html">Liên hệ</a>
                 </li>
             </ul>
         </div>
         <div class="offcanvas_footer">
-            <span><a href="#"><i class="fa fa-envelope-o"></i> khuonghung1423@gmail.com</a></span>
+            <span><a href="#"><i class="fa fa-envelope-o"></i> dinhsan200@gmail.com</a></span>
             <ul>
                 <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -101,14 +104,17 @@
                             <li class="top_links"><a href="#">Tài khoản của tôi<i class="ion-chevron-down"></i></a>
                                 <ul class="dropdown_links">
                                     <li><a href="my-account.html">Tài khoản của tôi</a></li>
-                                    <li><a href="index.php?page=login">Đăng Nhập
+                                    <li><a href="login.html">
                                             <?php
                                             if(isset($_SESSION["login"])) {
-                                                echo $_SESSION["login"][1];
+                                                echo $_SESSION["login"][1].'</br>';
+                                                echo "<a href='logout.html'>Đăng xuất</a>";
+                                            } else {
+                                                echo "Đăng Nhập";
                                             }
                                             ?>
                                         </a></li>
-                                    <li><a href="index.php?page=logout">Đăng Xuất</a></li>
+                                    <li><a href="logout.html"></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -134,13 +140,13 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="logo">
-                            <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="cart_area">
                             <div class="cart_link">
-                                <a href="index.php?page=cart"><i class="fa fa-shopping-basket"> <?php echo $numberpro?> Sản Phẩm</i></a>
+                                <a href="cart.html"><i class="fa fa-shopping-basket"> <?php echo $numberpro?> Sản Phẩm</i></a>
                             </div>
                         </div>
                     </div>
@@ -151,9 +157,9 @@
                     <div class="main_menu">
                         <nav>
                             <ul>
-                                <li><a href="index.php">Trang chủ<i class="fa"></i></a>
+                                <li><a href="index.html">Trang chủ<i class="fa"></i></a>
                                 </li>
-                                <li class="mega_items"><a href="shop.html">Sản phẩm</a>
+                                <li class="mega_items"><a href=".html">Cửa hàng</a>
                                 </li>
                             </ul>
                         </nav>
@@ -163,8 +169,8 @@
                     <div class="main_menu">
                         <nav>
                             <ul>
-                                <li><a href="index.php?page=about">Chúng tôi</a></li>
-                                <li><a href="index.php?page=contact">Liên hệ</a></li>
+                                <li><a href="about.html">Chúng tôi</a></li>
+                                <li><a href="contact.html">Liên hệ</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -183,10 +189,10 @@
                         <div class="main_menu">
                             <nav>
                                 <ul>
-                                    <li class="active"><a href="index.php">Trang chủ</a></li>
-                                    <li><a href="index.php?page=category">Của hàng</a></li>
-                                    <li><a href="index.php?page=about">Chúng tôi</a></li>
-                                    <li><a href="index.php?page=contact">Liên hệ</a></li>
+                                    <li class="active"><a href="index.html">Trang chủ</a></li>
+                                    <li><a href="category.html">Của hàng</a></li>
+                                    <li><a href="about.html">Chúng tôi</a></li>
+                                    <li><a href="contact.html">Liên hệ</a></li>
                                 </ul>
                             </nav>
                         </div>

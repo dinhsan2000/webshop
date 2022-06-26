@@ -31,9 +31,9 @@
                             <div class="col-sm">
                                 <div class="single_product">
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="index.php?page=product-details&id=<?php echo $rowProHome["pro_id"] ?>">
+                                        <a class="primary_img" href="<?php echo 'san-pham/'.$rowProHome["pro_id"].'/'.makeUrl($rowProHome["pro_name"]).'.html'?>">
                                             <img src="<?php echo $rowProHome["image"] ?>" alt="<?php echo $rowProHome['pro_name'] ?>"></a>
-                                            <a class="secondary_img" href="index.php?page=product-details&id=<?php echo $rowProHome["pro_id"] ?>"><img src="<?php echo $rowProHome["image"] ?>" alt=""></a>
+                                            <a class="secondary_img" href="<?php echo 'san-pham/'.$rowProHome["pro_id"].'/'.makeUrl($rowProHome["pro_name"]).'.html'?>"><img src="<?php echo $rowProHome["image"] ?>" alt=""></a>
                                         <div class="product_action">
                                             <div class="hover_action">
                                                 <a  href="#"><i class="fa fa-plus"></i></a>
@@ -51,12 +51,12 @@
 
                                         </div>
                                         <div class="quick_button">
-                                            <a href="index.php?page=product-details&id=<?php echo $rowProHome["pro_id"]?>" title="quick_view">Xem sản phẩm</a>
+                                            <a href="<?php echo 'san-pham/'.$rowProHome["pro_id"].'/'.makeUrl($rowProHome["pro_name"]).'.html'?>" title="quick_view">Xem sản phẩm</a>
                                         </div>
                                     </div>
                                     <div class="product_content">
                                         <h3>
-                                            <a href="index.php?page=product-details&id=<?php echo $rowProHome["pro_id"] ?>"></a>
+                                            <a href="<?php echo 'san-pham/'.$rowProHome["pro_id"].'/'.makeUrl($rowProHome["pro_name"]).'.html'?>"><?php echo $rowProHome['pro_name'] ?></a>
                                         </h3>
                                         <span class="current_price"><?php echo number_format($rowProHome["price"], 0, ",", ".") ?>Đ</span>
                                     </div>

@@ -115,7 +115,7 @@ ob_start();
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
                                 <li class="active">
-                                    <a href="index.html">Trang chủ</a>
+                                    <a href="xxxx.html">Trang chủ</a>
                                 </li>
                                 <li class="active">
                                     <a href="shop_category.html">Sản phẩm</a>
@@ -188,7 +188,7 @@ ob_start();
                         </div>
                         <div class="col-lg-4">
                             <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="xxxx.html"><img src="assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -250,7 +250,7 @@ ob_start();
                         <div class="main_menu"> 
                             <nav>  
                                 <ul>
-                                    <li><a href="index.html">Trang chủ<i class="fa"></i></a>
+                                    <li><a href="xxxx.html">Trang chủ<i class="fa"></i></a>
                                     </li>
                                     <li class="mega_items"><a href="shop.html">Sản phẩm</a>
                                     </li>
@@ -282,7 +282,7 @@ ob_start();
                             <div class="main_menu"> 
                                 <nav>  
                                     <ul>
-                                        <li class="active"><a href="index.html">Trang chủ</a></li>
+                                        <li class="active"><a href="xxxx.html">Trang chủ</a></li>
                                         <li><a href="shop_category.html">Của hàng</a></li>
                                         <li><a href="about.html">Chúng tôi</a></li>
                                         <li><a href="contact.html">Liên hệ</a></li>
@@ -305,7 +305,7 @@ ob_start();
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index.html">home</a></li>
+                            <li><a href="xxxx.html">home</a></li>
                             <li>/</li>
                             <li>sign</li>
                         </ul>
