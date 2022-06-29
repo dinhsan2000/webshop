@@ -95,16 +95,20 @@ function updateCart ($conn) {
 function login ($conn) {
     global $conn;
     if (isset($_POST["login"])) {
-        $user_name = trim($_POST["user_name"]);
+        $email = trim($_POST["email"]);
         $password = mysqli_real_escape_string($conn, $_POST["password"]);
         $password = md5($password);
-        $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' and password = '$password'";
+        $sqlLogin = "SELECT * FROM user WHERE email = '$email' and password = '$password'";
         $result = mysqli_query($conn, $sqlLogin);
         if (mysqli_num_rows($result)) {
             // tạo session nếu login thành công
             $rowlogin = mysqli_fetch_row($result);
             $_SESSION["login"] = $rowlogin;
             header("Location:index.php");
+            echo '<script language="javascript">alert("Đăng nhập thành công");</script>';
+        } else {
+            header("Location:index.php?page=login");
+            echo '<script language="javascript">alert("Tài khoản hoặc mật khẩu không đúng");</script>';
         }
     }
 }

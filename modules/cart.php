@@ -66,7 +66,7 @@
                             </table>
                         </div>
                         <div class="cart_submit">
-                            <button type="submit" href="index.php?page=category">Tiếp tục mua hàng</button>
+                            <button type="submit" href="index.html">Tiếp tục mua hàng</button>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                                     <p class="cart_amount"><?php echo number_format($total + $ship,0,",",".")?>Đ</p>
                                 </div>
                                 <div class="checkout_btn">
-                                    <a href="index.php?page=checkout">Tiến hành thanh toán</a>
+                                    <a href="checkout.html">Tiến hành thanh toán</a>
                                 </div>
                             </div>
                         </div>

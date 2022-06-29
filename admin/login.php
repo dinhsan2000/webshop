@@ -1,5 +1,6 @@
 <?php
 include ("../connection.php");
+include ("../common.php");
 session_start();
 if(isset($_SESSION["login"])) {
     header("location:index.php");
@@ -29,19 +30,7 @@ ob_start();
 </head>
 
 <?php
-if (isset($_POST["login"])) {
-    $user_name = trim($_POST["user_name"]);
-    $password = mysqli_real_escape_string($conn, $_POST["password"]);
-    $password = md5($password);
-    $sqlLogin = "SELECT * FROM user WHERE user_name = '$user_name' and password = '$password'";
-    $result = mysqli_query($conn, $sqlLogin);
-    if (mysqli_num_rows($result)) {
-        // tạo session nếu login thành công
-        $rowlogin = mysqli_fetch_row($result);
-        $_SESSION["login"] = $rowlogin;
-        header("Location:index.php");
-    }
-}
+login($conn);
 ?>
 
 <body>
@@ -59,8 +48,8 @@ if (isset($_POST["login"])) {
                     <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======-->
                     <form method="post">
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" placeholder="Tài khoản" name="user_name"
-                                id="user_name">
+                            <input class="input100" type="text" placeholder="Email" name="email"
+                                id="email">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class='bx bx-user'></i>
