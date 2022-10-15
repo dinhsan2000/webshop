@@ -28,8 +28,8 @@
                         <h2>login</h2>
                         <form action="#">
                             <p>
-                                <label>Email <span>*</span></label>
-                                <input type="text" name="email" id="email" required>
+                                <label>Username or email <span>*</span></label>
+                                <input type="text" name="user_name" id="user_name" required onclick="CheckEmail(this);" onclick="CheckEmail(this);">
                             </p>
                             <p>
                                 <label>Passwords <span>*</span></label>

@@ -21,8 +21,7 @@
                         <th>Màu</th>
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
-                        <th>Thời gian</th>
-
+                        <th>Tổng</th>
                     </tr>
                     <tbody>
                     <tr>
@@ -38,15 +37,11 @@
                         <td><?php echo $row['size_name'] ?></td>
                         <td><?php echo $row['color'] ?></td>
                         <td><?php echo $row['quantity'] ?></td>
-                        <td><?php echo number_format($row['price'],'0',',','.') ?>Đ</td>
-                        <td><?php echo $row['date_create'] ?></td>
+                        <td><?php echo $row['price'] ?></td>
+                        <td><?php echo $row['price'] * $row['quantity']?></td>
                         </tr>
-                    <tr>
-                        <td><input type="checkbox" name="check1" value="1"></td>
-                        <td style="color:blue" colspan="6">Tổng tiền: <?php echo number_format($row['price'] * $row['quantity'],'0',',','.')?>Đ</td>
-                    </tr>
+                    <?php } ?>
                     </tbody>
-                <?php } ?>
                 </table>
             </div>
         </div>

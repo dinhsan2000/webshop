@@ -146,16 +146,7 @@ function register ($conn) {
                     echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý"); window.location="register.php";</script>';
                 }
             }
-            }
         }
     }
-function makeUrl($string)
-{
-    $string = trim($string);
-    $string = str_replace(' ', '-', $string);
-    $string = strtolower($string);
-    $string = preg_replace('/(à|á|ả|ã|ạ|ă|ắ|ằ|ẳ|ặ)/', 'a', $string);
-    return $string;
 }
 ?>
-
